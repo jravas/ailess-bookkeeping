@@ -6,7 +6,10 @@ const input = document.getElementById("billy");
 const textEl = document.getElementById("text");
 
 input?.addEventListener("change", function (e) {
-  const file = e.target?.files[0];
+  const target = e.target as HTMLInputElement;
+  if (!target.files) return;
+
+  const file = target.files[0];
   const reader = new FileReader();
 
   reader.onloadend = async function () {
